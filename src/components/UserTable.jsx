@@ -13,6 +13,7 @@ export default function UserTable({ users, onEdit, onDelete, setShowForm}) {
                     <td>Webiste</td>
                     <td>Action</td>
                 </tr>
+            </thead>
                 <tbody>
                     {users.map((user) => {
                         <tr key={user.id}>
@@ -36,7 +37,6 @@ export default function UserTable({ users, onEdit, onDelete, setShowForm}) {
                         </tr>
                     })}
                 </tbody>
-            </thead>
         </table>
     );
 }

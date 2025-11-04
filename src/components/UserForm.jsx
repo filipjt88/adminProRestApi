@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+
 export default function UserForm({editingUser, onAdd, onUpdate, onCancel, showForm}) {
     const [user, setUser] = useState({
         name: "",
@@ -33,24 +34,12 @@ export default function UserForm({editingUser, onAdd, onUpdate, onCancel, showFo
 
     if (!user.name || !user.username) {
       alert("Name and username are required!");
-      return;
-    }
-
-    if (editingUser) {
-      onUpdate(user);
-    } else {
-      onAdd(user);
-    }
+      if (editingUser) onUpdate(user);
+    else onAdd(user);
+    };
 
     // Reset forme
-    setUser({
-      name: "",
-      username: "",
-      email: "",
-      city: "",
-      website: "",
-    });
-  };
+    setUser({ name: "", username: "", email: "", city: "", website: "", });};
 
     return(
         <div className={`card p-4 mb-4 shadow ${showForm ? "" : "d-none"}`}>

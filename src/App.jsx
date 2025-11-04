@@ -11,6 +11,8 @@ export default function App() {
 
   const[editingUser, setEditingUser] = useState(null);
 
+  const [showForm, setShowForm] = useState(false);
+
   const handleAdd = (user) => {
     setUsers([...user,{ id: users.length + 1}]);
   };
@@ -25,11 +27,21 @@ export default function App() {
 
   return(
     <div className="container py-4">
-      <Navbar OnAddUser={() => {
-        setEditingUser(null);
-        setShowForm(true);
-      }}/>
-      <UserForm onAdd={handleAdd} onUpdate={handleUpdate} editingUser={editingUser}/>
+     <Navbar OnAddUser={() => {
+      setEditingUser(null);
+      setShowForm(true);
+     }}/>
+      <UserForm editingUser={editingUser} onAdd={(user) => {
+        setUsers([...users, {...user, id: users.length + 1}]);
+        setShowForm(false);
+      }}
+      onUpdate={(user) => {
+        setUsers(users.map(u =>(u.id === user.id ? user : u)));
+        setShowForm(false);
+      }}
+      onCancel={() => setShowForm(false)}
+      showForm={showForm}
+      />
       <UserTable users={users} onEdit={setEditingUser} onDelete={handleDelete}/>
     </div>
   )

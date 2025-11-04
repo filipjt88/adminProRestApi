@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [users, setUsers] = useState([
+    {id: 1, name: "Filip", username: "Jotic", email: "filip88bg@gmail.com", city: "Belgrade"},
+    {id: 2, name: "Marko", username: "Petrovic", email: "marko99@gmail.com", city: "Novi Sad"}
+  ]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+  const[editingUser, setEditingUser] = useState(null);
+
+  const handleAdd = (user) => {
+    setUsers([...user,{ id: users.length + 1}]);
+  };
+
+  const handleUpdate = (user) => {
+    setUsers(users.map(u => (u.id === user.id ? user : u)));
+  };
+
+  const handleDelete = (id) => {
+    setUsers(users.filter(u => u.id !== id));
+  };
+
+  return(
+    <div className="container py-4">
+      <Navbar/>
+      <UseForm onAdd={handleAdd} onUpdate={handleUpdate} editingUser={editingUser}/>
+      <UserTable users={users} onEdit={setEditingUser} onDelete={handleDelete}/>
+    </div>
   )
-}
 
-export default App
+}

@@ -42,7 +42,12 @@ export default function App() {
       onCancel={() => setShowForm(false)}
       showForm={showForm}
       />
-      <UserTable users={users} onEdit={setEditingUser} onDelete={handleDelete}/>
+      <UserTable
+        users={users}
+        onEdit={(user) => { setEditingUser(user); setShowForm(true); }}
+        onDelete={(id) => setUsers(users.filter(u => u.id !== id))}
+        setShowForm={setShowForm}
+      />
     </div>
   )
 

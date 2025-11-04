@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import Navbar from "./components/Navbar";
+import UserTable from "./components/UserTable";
+import UserForm from "./components/UserForm";
 
 export default function App() {
   const [users, setUsers] = useState([

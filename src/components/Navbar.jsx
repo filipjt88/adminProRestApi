@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Navbar({ OnAddUser }) {
     return(
         <nav className="navbar navbar-dark bg-dark mb-4">

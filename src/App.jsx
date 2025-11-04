@@ -25,8 +25,11 @@ export default function App() {
 
   return(
     <div className="container py-4">
-      <Navbar/>
-      <UseForm onAdd={handleAdd} onUpdate={handleUpdate} editingUser={editingUser}/>
+      <Navbar OnAddUser={() => {
+        setEditingUser(null);
+        setShowForm(true);
+      }}/>
+      <UserForm onAdd={handleAdd} onUpdate={handleUpdate} editingUser={editingUser}/>
       <UserTable users={users} onEdit={setEditingUser} onDelete={handleDelete}/>
     </div>
   )

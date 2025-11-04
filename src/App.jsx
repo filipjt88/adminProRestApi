@@ -30,7 +30,6 @@ export default function App() {
   return(
     <div className="container py-4">
       <Navbar onAddUser={() => { setEditingUser(null); setShowForm(true); }} />
-     
       <UserForm
         editingUser={editingUser}
         showForm={showForm}

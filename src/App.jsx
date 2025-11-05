@@ -65,19 +65,36 @@ const handleDelete = async (id) => {
 
   return(
     <div className="container py-4">
-      <Navbar onAddUser={() => { setEditingUser(null); setShowForm(true); }} />
+      <Navbar onAddUser={() => { 
+        setEditingUser(null); 
+        setShowForm(true); 
+        }}/>
+
+      {showForm && (
       <UserForm
         editingUser={editingUser}
         showForm={showForm}
         onAdd={handleAdd}
         onUpdate={handleUpdate}
-        onCancel={() => setShowForm(false)}
+        onCancel={() => {
+          setEditingUser(null);
+          setShowForm(false)
+        }}
       />
+      )}
+
+      {loading ? (
+        <p>Ucitavanje...</p>
+      ) : (
       <UserTable
         users={users}
-        onEdit={(user) => { setEditingUser(user); setShowForm(true); }}
+        onEdit={(user) => { 
+        setEditingUser(user); 
+        setShowForm(true); 
+        }}
         onDelete={handleDelete}
       />
+      )}
     </div>
-  )
+  );
 }

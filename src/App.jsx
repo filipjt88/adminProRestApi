@@ -40,8 +40,16 @@ export default function App() {
   }
 };
 
-const handleUpdate = (updatedUser) => {
-  setUsers(users.map(u => (u.id === updatedUser.id ? updatedUser : u)));
+const handleUpdate = async(user) => {
+    try {
+      await updateUser(user);
+      await load();
+      setEditingUser(null);
+      setShowForm(false);
+    } catch(err) {
+      console.error("Update error", err);
+      alert("Greska pri izmeni korisnika!");
+    }
 };
 
 const handleDelete = (id) => {

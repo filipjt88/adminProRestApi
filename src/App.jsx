@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import UserForm from "./components/UserForm";
 import UserTable from "./components/UserTable";
@@ -13,19 +13,18 @@ export default function App() {
 
   const [showForm, setShowForm] = useState(false);
 
-  const handleAdd = (user) => {
-    setUsers([...users, {id: users.length + 1, ...user}]);
-    setShowForm(false);
-  };
+ const handleAdd = (user) => {
+  const newUser = { ...user, id: users.length + 1 };
+  setUsers([...users, newUser]);
+};
 
-  const handleUpdate = (user) => {
-    setUsers(users.map((u) => (u.id === user.id ? user : u)));
-    setShowForm(false);
-  };
+const handleUpdate = (updatedUser) => {
+  setUsers(users.map(u => (u.id === updatedUser.id ? updatedUser : u)));
+};
 
-  const handleDelete = (id) => {
-    setUsers(users.filter((u) => u.id !== id));
-  };
+const handleDelete = (id) => {
+  setUsers(users.filter(u => u.id !== id));
+};
 
   return(
     <div className="container py-4">

@@ -1,21 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import UserForm from "./components/UserForm";
 import UserTable from "./components/UserTable";
+import { getUsers, createUser, updateUser, deleteUser } from "./services/api";
+
 
 export default function App() {
-  const [users, setUsers] = useState([
-    {id: 1, name: "Filip", username: "Jotic", email: "filip88bg@gmail.com", city: "Belgrade"},
-    {id: 2, name: "Marko", username: "Petrovic", email: "marko99@gmail.com", city: "Novi Sad"}
-  ]);
-
-  const[editingUser, setEditingUser] = useState(null);
-
+  const [users, setUsers] = useState([]);
+  const [editingUser, setEditingUser] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
- const handleAdd = (user) => {
-  const newUser = { ...user, id: users.length + 1 };
-  setUsers([...users, newUser]);
+  // ucitaj korisnike
+  const load = async () => {
+    try {
+      setLoading(true);
+      const data = await getUsers();
+      setUsers(Array.isArray(data) ? data : (data ? [data] :  []));
+    } catch (error) {
+      console.error("Load users error:",error);
+      alert("Ne mogu se ucitati korisnici");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+ const handleAdd = async (user) => {
+  try {
+    await createUser(user);
+    await load();
+    setShowForm(false);
+  } catch(err) {
+    console.error("Create error:",err);
+    alert("Greska pri dodavanju korisnika!");
+  }
 };
 
 const handleUpdate = (updatedUser) => {

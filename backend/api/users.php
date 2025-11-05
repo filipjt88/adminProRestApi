@@ -16,7 +16,14 @@ switch ($method) {
     case "POST":
        $data = json_decode(file_get_contents("php://input"), true);
        $stmt = $pdo->prepare("INSERT INTO users (name, username, email, city, website) VALUES (?,?,?,?,?)");
-       $stmt->execute([$data['name'], $data['username'], $data['email'], $data['city'], $data['city'], $data['website']]);
+       $stmt->execute([$data['name'], $data['username'], $data['email'], $data['city'], $data['website']]);
        echo json_encode(['message' => "User added!"]);
        break; 
+
+    case "PUT":
+        $data = json_decode(file_get_contents("php://input"),true);
+        $stmt = $pdo->prepare("UPDATE users SET name=?, username=?, email=?, city=?, website=? WHERE id = ?");
+        $stmt->execute([$data['name'], $data['username'], $data['email'], $data['city'], $data['website'], $data['id']]);
+        echo json_encode(['message'] => "User updated");
+        break;
 }

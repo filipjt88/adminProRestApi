@@ -13,6 +13,8 @@ switch ($method) {
             $stmt = $pdo->query("SELECT * FROM users");
             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }
+        break;
+
     case "POST":
        $data = json_decode(file_get_contents("php://input"), true);
        $stmt = $pdo->prepare("INSERT INTO users (name, username, email, city, website) VALUES (?,?,?,?,?)");
@@ -24,7 +26,7 @@ switch ($method) {
         $data = json_decode(file_get_contents("php://input"),true);
         $stmt = $pdo->prepare("UPDATE users SET name=?, username=?, email=?, city=?, website=? WHERE id = ?");
         $stmt->execute([$data['name'], $data['username'], $data['email'], $data['city'], $data['website'], $data['id']]);
-        echo json_encode(['message'] => "User updated");
+        echo json_encode(['message' => "User updated"]);
         break;
     
     case "DELETE": 

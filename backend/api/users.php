@@ -26,4 +26,17 @@ switch ($method) {
         $stmt->execute([$data['name'], $data['username'], $data['email'], $data['city'], $data['website'], $data['id']]);
         echo json_encode(['message'] => "User updated");
         break;
+    
+    case "DELETE": 
+        $data = json_decode(file_get_contents("php://input"),true);
+        $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->execute([$data['id']]);
+        echo json_encode(['message' => "User deleted"]);
+        break;
+    
+    default:
+        echo json_encode(['message' => "Not a good request!"]);
+        break;
 }
+
+?>

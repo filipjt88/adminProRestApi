@@ -52,8 +52,15 @@ const handleUpdate = async(user) => {
     }
 };
 
-const handleDelete = (id) => {
-  setUsers(users.filter(u => u.id !== id));
+const handleDelete = async (id) => {
+  if(!window.confirm("Da li ste sigurni da zelite da obrisete korisnika?")) return;
+  try {
+    await deleteUser(id);
+    await load();
+  } catch(err) {
+    console.error("Delete error", err);
+    alert("Greska pri brisanju korisnika!");
+  }
 };
 
   return(

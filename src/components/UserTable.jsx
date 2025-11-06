@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function UserTable({ users, onEdit, onDelete }) {
   return (
     <table className="table table-bordered text-center">

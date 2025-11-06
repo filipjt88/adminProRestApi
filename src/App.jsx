@@ -30,6 +30,29 @@ export default function App() {
     load();
   }, []);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+const handleLogin = async (credentials) => {
+  try {
+    // Pozovemo backend PHP API za login
+    const res = await fetch("http://localhost/adminProRestApi/backend/api/login.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      setIsLoggedIn(true); // korisnik je ulogovan
+    } else {
+      alert(data.message || "Neuspešan login!");
+    }
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Greška pri logovanju.");
+  }
+};
+
  const handleAdd = async (user) => {
   try {
     await createUser(user);

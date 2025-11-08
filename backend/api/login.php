@@ -6,7 +6,7 @@ $data = json_decode(file_get_contents("php://input"),true);
 $username = $data = ['username'] ?? '';
 $password = $data = ['password'] ?? '';
 
-if($username === "admin" $password === "admin123") {
+if($username === "admin" && $password === "admin123") {
     echo json_encode([
         "success" => true,
         "token" => "fake-jwt-token-123"

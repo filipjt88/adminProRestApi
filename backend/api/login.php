@@ -1,10 +1,11 @@
 <?php
+header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json");
 
 require_once "../config/db.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
@@ -16,30 +17,26 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-$data = json_decode(file_get_contents("php://input"),true);
+$input = file_get_contents("php://input");
+$data = json_decode($input, true);
 
-$username = trim($data['username'] ?? '');
-$password = trim($data['password'] ?? '');
+// Provera validnosti podataka
+if (!$data || !isset($data["username"]) || !isset($data["password"])) {
+    echo json_encode(["success" => false, "message" => "Pogrešan format podataka"]);
+    exit;
+}
 
+$username = trim($data["username"]);
+$password = trim($data["password"]);
+
+// Hardkodovani admin nalozi
 $adminUsername = "admin";
 $adminPassword = "1234";
 
 if ($username === $adminUsername && $password === $adminPassword) {
     echo json_encode(["success" => true, "message" => "Uspešan login"]);
+    exit;
 } else {
     echo json_encode(["success" => false, "message" => "Neispravan username ili password"]);
+    exit;
 }
-
-$stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ?");
-$stmt->execute([$username]);
-$admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if($admin && password_verify($password, $admin["password"])) {
-    session_start();
-    $_SESSION["admin"] = $admin["username"];
-    echo json_encode(["success" => true, "message" => "Uspesno ste se logovali!"]);
-} else {
-    echo json_encode(["success" => false, "message" => "Neispravan username ili password!"]);
-}
-
-?>

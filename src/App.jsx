@@ -6,11 +6,11 @@ import Login from "./components/LoginForm";
 import { getUsers, createUser, updateUser, deleteUser } from "./services/api";
 
 export default function App() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers]             = useState([]);
   const [editingUser, setEditingUser] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [showForm, setShowForm]       = useState(false);
+  const [loading, setLoading]         = useState(false);
+  const [loggedIn, setLoggedIn]       = useState(false);
 
   // Login funkcija
   const handleLogin = async ({ username, password }) => {

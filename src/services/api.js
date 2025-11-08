@@ -13,10 +13,10 @@ async function request(url = BASE, options = {}) {
 }
 
 // 🔹 GET - svi korisnici
-export const getUsers = () => request(BASE);
+export const getUsers   = () => request(BASE);
 
 // 🔹 GET - jedan korisnik
-export const getUser = (id) => request(`${BASE}?id=${encodeURIComponent(id)}`);
+export const getUser    = (id) => request(`${BASE}?id=${encodeURIComponent(id)}`);
 
 // 🔹 POST - dodaj korisnika
 export const createUser = (user) =>

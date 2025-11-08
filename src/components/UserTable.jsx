@@ -3,7 +3,13 @@ export default function UserTable({ users, onEdit, onDelete }) {
     <table className="table table-bordered text-center">
       <thead className="table-dark">
         <tr>
-          <th>ID</th><th>Name</th><th>Username</th><th>Email</th><th>City</th><th>Website</th><th>Action</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Website</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>

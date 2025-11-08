@@ -53,8 +53,6 @@ const handleLogin = async (credentials) => {
   }
 };
 
-
-
  const handleAdd = async (user) => {
   try {
     await createUser(user);

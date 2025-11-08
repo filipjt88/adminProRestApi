@@ -6,14 +6,28 @@ header("Content-Type: application/json");
 
 require_once "../config/db.php";
 
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    http_response_code(200);
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode(["success" => false, "message" => "Invalid request method"]);
+    exit;
+}
+
 $data = json_decode(file_get_contents("php://input"),true);
 
 $username = trim($data['username'] ?? '');
 $password = trim($data['password'] ?? '');
 
-if(empty($username) || empty($password)) {
-    echo json_encode(['success' => false, "message" => "Nedostaju vam podaci!"]);
-    exit;
+$adminUsername = "admin";
+$adminPassword = "1234";
+
+if ($username === $adminUsername && $password === $adminPassword) {
+    echo json_encode(["success" => true, "message" => "Uspešan login"]);
+} else {
+    echo json_encode(["success" => false, "message" => "Neispravan username ili password"]);
 }
 
 $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ?");

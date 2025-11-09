@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 require_once "../config/db.php";
 
-
+// Requset
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
@@ -20,23 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $input = file_get_contents("php://input");
 $data = json_decode($input, true);
 
-// Provera validnosti podataka
+// Data validation check
 if (!$data || !isset($data["username"]) || !isset($data["password"])) {
-    echo json_encode(["success" => false, "message" => "Pogrešan format podataka"]);
+    echo json_encode(["success" => false, "message" => "Incorrect data format"]);
     exit;
 }
 
 $username = trim($data["username"]);
 $password = trim($data["password"]);
 
-// Hardkodovani admin nalozi
+// Hardcoded admin accounts
 $adminUsername = "admin";
 $adminPassword = "1234";
 
 if ($username === $adminUsername && $password === $adminPassword) {
-    echo json_encode(["success" => true, "message" => "Uspešan login"]);
+    echo json_encode(["success" => true, "message" => "Success login"]);
     exit;
 } else {
-    echo json_encode(["success" => false, "message" => "Neispravan username ili password"]);
+    echo json_encode(["success" => false, "message" => "Defective username or password"]);
     exit;
 }

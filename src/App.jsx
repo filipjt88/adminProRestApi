@@ -12,7 +12,7 @@ export default function App() {
   const [loading, setLoading]         = useState(false);
   const [loggedIn, setLoggedIn]       = useState(false);
 
-  // Login funkcija
+  // Login function
   const handleLogin = async ({ username, password }) => {
     try {
       const res = await fetch("http://localhost/adminProRestApi/backend/api/login.php", {
@@ -25,11 +25,11 @@ export default function App() {
         setLoggedIn(true);
         load(); // Ucitaj korisnike
       } else {
-        alert("Pogrešan username ili lozinka!");
+        alert("Wrong username or password!");
       }
     } catch (err) {
       console.error("Login error:", err);
-      alert("Greška pri loginu!");
+      alert("Login error!");
     }
   };
 
@@ -39,7 +39,7 @@ export default function App() {
     setUsers([]);
   };
 
-  // Učitavanje korisnika
+  // Waiting for users
   const load = async () => {
     try {
       setLoading(true);
@@ -47,7 +47,7 @@ export default function App() {
       setUsers(Array.isArray(data) ? data : data ? [data] : []);
     } catch (error) {
       console.error("Load users error:", error);
-      alert("Ne mogu se učitati korisnici");
+      alert("Unable to load users.");
     } finally {
       setLoading(false);
     }
@@ -61,7 +61,7 @@ export default function App() {
       setShowForm(false);
     } catch (err) {
       console.error("Create error:", err);
-      alert("Greška pri dodavanju korisnika!");
+      alert("Error adding user!");
     }
   };
   // Update
@@ -73,19 +73,19 @@ export default function App() {
       setShowForm(false);
     } catch (err) {
       console.error("Update error", err);
-      alert("Greška pri izmeni korisnika!");
+      alert("Error while changing user!");
     }
   };
 
   // Delete
   const handleDelete = async (id) => {
-    if (!window.confirm("Da li ste sigurni da želite da obrišete korisnika?")) return;
+    if (!window.confirm("Are you sure you want to delete the user?")) return;
     try {
       await deleteUser(id);
       await load();
     } catch (err) {
       console.error("Delete error", err);
-      alert("Greška pri brisanju korisnika!");
+      alert("Error deleting user!");
     }
   };
 
@@ -124,7 +124,7 @@ export default function App() {
       )}
 
       {loading ? (
-        <p>Učitavanje...</p>
+        <p>Loading...</p>
       ) : (
         <UserTable
           users={users}

@@ -23,7 +23,7 @@ export default function App() {
       const data = await res.json();
       if (data.success) {
         setLoggedIn(true);
-        load(); // Ucitaj korisnike
+        load(); // Load users
       } else {
         alert("Wrong username or password!");
       }

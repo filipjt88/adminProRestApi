@@ -7,10 +7,9 @@ export default function Login({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!username || !password) {
-      alert("Unesi username i password!");
+      alert("Enter username and password!");
       return;
     }
-    // Prosleđujemo kredencijale roditeljskoj komponenti (App.jsx)
     onLogin({ username, password });
   };
 

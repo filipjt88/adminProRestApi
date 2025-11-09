@@ -53,7 +53,7 @@ export default function App() {
     }
   };
 
-  // CRUD funkcije
+  // Add
   const handleAdd = async (user) => {
     try {
       await createUser(user);
@@ -64,7 +64,7 @@ export default function App() {
       alert("Greška pri dodavanju korisnika!");
     }
   };
-
+  // Update
   const handleUpdate = async (user) => {
     try {
       await updateUser(user);
@@ -77,6 +77,7 @@ export default function App() {
     }
   };
 
+  // Delete
   const handleDelete = async (id) => {
     if (!window.confirm("Da li ste sigurni da želite da obrišete korisnika?")) return;
     try {
@@ -102,7 +103,7 @@ export default function App() {
         }}
       />
 
-      {/* Dugme za odjavu */}
+      {/* button for logout */}
       <div className="text-end mb-3">
         <button className="btn btn-outline-danger" onClick={handleLogout}>
           Logout

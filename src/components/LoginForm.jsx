@@ -4,6 +4,8 @@ export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+
+  // Submit login
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!username || !password) {

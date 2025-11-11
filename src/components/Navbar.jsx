@@ -1,3 +1,4 @@
+// Navbar
 export default function Navbar({ onAddUser }) {
     return(
         <nav className="navbar navbar-dark bg-dark mb-4 mt-5">

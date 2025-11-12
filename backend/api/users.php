@@ -3,6 +3,7 @@ require_once "../config/db.php";
 
 $method = $_SERVER["REQUEST_METHOD"];
 
+// All methods
 switch ($method) {
     case "GET": 
         if(!empty($_GET['id'])) {

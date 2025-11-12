@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
+// Login function
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
 
   // Submit login
   const handleSubmit = (e) => {

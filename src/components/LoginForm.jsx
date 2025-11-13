@@ -19,6 +19,7 @@ export default function Login({ onLogin }) {
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4 shadow" style={{ minWidth: "400px" }}>
         <h5 className="mb-3 text-center">Admin Login</h5>
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           <input
             type="text"

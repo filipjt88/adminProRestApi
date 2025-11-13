@@ -1,5 +1,6 @@
 export default function UserTable({ users, onEdit, onDelete }) {
   return (
+    // Table users
     <table className="table table-bordered text-center">
       <thead className="table-dark">
         <tr>

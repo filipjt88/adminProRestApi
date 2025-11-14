@@ -25,7 +25,9 @@ export default function UserTable({ users, onEdit, onDelete }) {
             <td>{user.city}</td>
             <td>{user.website}</td>
             <td>
+              {/* Edit user btn */}
               <button className="btn btn-warning btn-sm me-1" onClick={() => onEdit(user)}>Edit</button>
+              {/* Delete user btn */}
               <button className="btn btn-danger btn-sm" onClick={() => onDelete(user.id)}>Delete</button>
             </td>
           </tr>

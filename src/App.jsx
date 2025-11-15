@@ -53,7 +53,7 @@ export default function App() {
     }
   };
 
-  // Add
+  // Add user
   const handleAdd = async (user) => {
     try {
       await createUser(user);
@@ -64,7 +64,7 @@ export default function App() {
       alert("Error adding user!");
     }
   };
-  // Update
+  // Update user
   const handleUpdate = async (user) => {
     try {
       await updateUser(user);
@@ -77,7 +77,7 @@ export default function App() {
     }
   };
 
-  // Delete
+  // Delete user
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete the user?")) return;
     try {

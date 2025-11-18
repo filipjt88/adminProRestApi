@@ -30,7 +30,7 @@ if (!$data || !isset($data["username"]) || !isset($data["password"])) {
 $username = trim($data["username"]);
 $password = trim($data["password"]);
 
-// Hardcoded admin accounts
+// Hardcoded admin account
 $adminUsername = "admin";
 $adminPassword = "1234";
 

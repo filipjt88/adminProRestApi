@@ -39,7 +39,7 @@ export default function App() {
     setUsers([]);
   };
 
-  // Waiting for users
+  // Load users
   const load = async () => {
     try {
       setLoading(true);

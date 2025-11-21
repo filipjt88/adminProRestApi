@@ -1,5 +1,5 @@
 // Navbar
-export default function Navbar({ onAddUser }) {
+export default function Navbar({ onAddUser }) { // add user
     return(
         <nav className="navbar navbar-dark bg-dark mb-4 mt-5">
             <div className="container">

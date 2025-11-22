@@ -7,6 +7,7 @@ export default function UserForm({ editingUser, onAdd, onUpdate, onCancel, showF
     setUser(editingUser || { name: "", username: "", email: "", city: "", website: "" });
   }, [editingUser]);
 
+  // Form change user
   const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
